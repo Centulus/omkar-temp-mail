@@ -29,8 +29,7 @@
 
 
 
-Omkar Temporary Email offers a convenient solution for receiving temporary emails. It is particularly useful for automated tasks that require email verification during account creation.
-
+Omkar Temporary Email offers a convenient solution for receiving temporary emails. 
 ## Getting Started
 To get started with Omkar Temp Mail install `omkar-temp-mail` using the following command:
 
