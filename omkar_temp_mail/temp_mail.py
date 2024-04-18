@@ -131,7 +131,7 @@ class TempMail():
 
             if len(req) == 0:
                 print('No messages')
-                assert False
+                return None
 
             id = extractids(req)[-1]
 
@@ -163,20 +163,21 @@ class TempMail():
             req = requests.get(reqLink).json()
 
             if len(req) == 0:
-                print('No messages')
-                assert False
-
-            id = extractids(req)[-1]
-
-            msgRead = f'{API}?action=readMessage&login={login}&domain={domain}&id={id}'
-            req = requests.get(msgRead).json()
-
-            html = req['htmlBody']
-            
-            if html == '':
-                return req['textBody']
-            else:
-                return  html
+                return None
+            try:
+                id = extractids(req)[-1]
+                
+                msgRead = f'{API}?action=readMessage&login={login}&domain={domain}&id={id}'
+                req = requests.get(msgRead).json()
+                
+                html = req['htmlBody']
+                
+                if html == '':
+                    return req['textBody']
+                else:
+                    return  html
+            except:
+                pass
 
         retry_if_is_error(
             run, NETWORK_ERRORS + [AssertionError], 
